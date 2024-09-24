@@ -3,12 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <script defer src="/script.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="./script.js"></script>
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+        #creepyText {
+          font-family: 'Arial', sans-serif;
+          font-size: 24px;
+          color: black;
+          transition: all 0.5s ease; /* Smooth transition for the style change */
+        }
+      </style>
 </head>
 <body>
-    <h1>Most Exclusive Website in the World</h1>
+    <div id="creepyText">You don't belong here... yet.</div>
+  <!-- Initial Question Container -->
+  <div id="form-container">
+    <p>If a wolf is a dog and a tiger is a cat, how many legs are on a spider?</p>
+
+    <!-- Registration Form and attribute validation -->
+    <form id="question1">
+      <input name="answer1" 
+      type="text" 
+      placeholder="There are no trick questions" 
+      required />
+      <br />
+      <input type="button" value="Submit Answer" onclick="checkFirstAnswer()" />
+    </form>
+  </div>
+
+  <script>
+    // current function to start quiz
+    function checkFirstAnswer() {
+      const formContainer = document.getElementById('form-container'); // Get the container
+      const answer1 = document.querySelector('input[name="answer1"]').value.trim();
+      const answerRegex = /^8$/; // Regex for validating the answer "8"
+
+      if (!answerRegex.test(answer1)) {
+        alert('The correct answer is 8. Please try again.');
+      } else {
+        // Remove the previous question
+        document.getElementById('question1').remove();
+
+        // Create a new question dynamically
+        const newQuestion = document.createElement('div');
+        newQuestion.innerHTML = `
+          <p>What is a 3 letter word for cat? </p>
+          <form id="question2">
+            <input name="answer2" type="text" placeholder="Your answer" required />
+            <br />
+            <input type="button" value="Submit Answer" onclick="checkSecondAnswer()" />
+          </form>
+        `;
+        
+        // Appendchild usage
+        formContainer.appendChild(newQuestion); 
+      }
+    }
+
+    // Function to check the second answer
+    function checkSecondAnswer() {
+      const answer2 = document.querySelector('input[name="answer2"]').value.trim();
+      if (answer2.toLowerCase() === 'cat') {
+        alert('fine you are correct');
+      } else {
+        alert('Try again. The answer is literally in the question');
+      }
+    }
+  </script>
+
 </body>
 </html>
+
 

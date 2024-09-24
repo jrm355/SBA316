@@ -1,0 +1,8 @@
+Thinking of incorperating a bunch of terrible riddles in order to allow the user to advance
+
+Riddle ideas
+
+type 'thepassword' to enter
+What is a 3 letter word for cat? 'cat'
+How many months end with y or r and start with a, m, or j "12"
+pick a number between 1 and 5
