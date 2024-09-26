@@ -17,7 +17,7 @@
       </style>
 </head>
 <body>
-    <div id="creepyText">You don't belong here... yet.</div>
+    <div id="creepyText">words</div>
   <!-- Question Container -->
   <div id="form-container">
     <p>If a wolf is a dog and a tiger is a cat, how many legs are on a spider?</p>
@@ -26,7 +26,7 @@
     <form id="question1">
       <input name="answer1" 
       type="text" 
-      placeholder="There are no trick questions" 
+      placeholder="it's super easy" 
       required />
       <br />
       <input type="button" value="Submit Answer" onclick="checkFirstAnswer()" />
@@ -46,10 +46,10 @@
         // Remove the previous question
         document.getElementById('question1').remove();
 
-        // Create a new question dynamically
+        // CreateElement
         const newQuestion = document.createElement('div');
         newQuestion.innerHTML = `
-          <p>What is a 3 letter word for cat? </p>
+          <p>What is a 5 letter word for skunk? </p>
           <form id="question2">
             <input name="answer2" type="text" placeholder="Your answer" required />
             <br />
@@ -65,8 +65,8 @@
     // Function to check the second answer
     function checkSecondAnswer() {
       const answer2 = document.querySelector('input[name="answer2"]').value.trim();
-      if (answer2.toLowerCase() === 'cat') {
-        alert('fine you are correct');
+      if (answer2.toLowerCase() === 'skunk') {
+        alert('fine you are correct, your clue is c');
       } else {
         alert('Try again. The answer is literally in the question');
       }
@@ -121,13 +121,195 @@
     //  question and validation
     function askNextQuestion() {
       let nextAnswer = prompt("Will this question lead you anywhere?");
-      if (nextAnswer.toLowerCase() === 'nope') {
+      if (nextAnswer.toLowerCase() === 'no') {
         alert("congrats you did this for nothing");
       } else {
-        alert("the answer is nope");
+        alert("the answer is no");
       }
     }
   </script>
 
 </body>
+<style>
+    #clickableText {
+      font-size: 24px;
+      color: black;
+      cursor: pointer;
+    }
+    .kittenContainer {
+      margin-top: 20px;
+    }
+    img {
+      max-width: 300px;
+      border: 2px solid #000;
+      cursor: pointer; /* Make the image clickable */
+      display: none; /* Hide the second image initially */
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="kittenContainer">
+    <img id="kitten1" src="images/tiger.jpg" alt="kitten"
+  </div>
+  <div class="kittenContainer">
+    <img id="kitten2" src="images/lion.jpg" alt="Another cute kitten">
+  </div>
+
+  <script>
+    const newElement = document.getElementById('clickableText');
+    const kitten1 = document.getElementById('kitten1');
+    const kitten2 = document.getElementById('kitten2');
+
+    // Event listener for the text element
+    newElement.addEventListener('click', function() {
+      let userAnswer = prompt("Do you want a picture of a tiger?");
+
+      if (userAnswer.toLowerCase() === 'yes') {
+        alert("Correct! Here’s your reward: Also the letter T");
+        kitten1.style.display = 'block'; // Show the first kitten image
+      } else {
+        alert("Incorrect! Try again.");
+      }
+    });
+
+    // Event listener for the first kitten image
+    kitten1.addEventListener('click', function() {
+      // Get the next sibling (the second kitten image) and display it
+      const nextKitten = kitten1.nextElementSibling.querySelector('img');
+      if (nextKitten) {
+        nextKitten.style.display = 'block'; // Show the second kitten
+      }
+    });
+
+  </script>
+
+<title>Riddle Game</title>
+<style>
+  .riddle {
+    margin-bottom: 20px;
+  }
+  .riddle p {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  .answer {
+    display: block;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 200px;
+    cursor: pointer;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="riddle1" class="riddle">
+  <p>There are no good answers</p>
+  <span class="answer">Yes</span>
+  <span class="answer">No</span>
+  <span class="answer">I don't know</span>
+</div>
+
+<div id="riddle2" class="riddle hidden">
+  <p>You've tried food combinations you aren't proud of</p>
+  <span class="answer">Yes</span>
+  <span class="answer">No</span>
+  <span class="answer">Shh</span>
+</div>
+
+<div id="riddle3" class="riddle hidden">
+  <p>You're afraid of the dark</p>
+  <span class="answer">No I'm brave</span>
+  <span class="answer">Of course who isn't</span>
+  <span class="answer">babbling</span>
+</div>
+
+<script>
+  // Array of correct answers
+  const correctAnswers = ['yes', 'shh', 'babbling'];
+
+  // Function to check the answer and show the next riddle
+  function checkAnswer(event) {
+    const selectedAnswer = event.target.innerText;
+    const currentRiddle = event.target.parentElement;
+    const riddleIndex = [...document.querySelectorAll('.riddle')].indexOf(currentRiddle);
+    
+    if (selectedAnswer === correctAnswers[riddleIndex]) {
+      alert('Correct!');
+      currentRiddle.classList.add('hidden'); // Hide current riddle
+      const nextRiddle = currentRiddle.nextElementSibling;
+      
+      if (nextRiddle) {
+        nextRiddle.classList.remove('hidden'); // Show the next riddle
+      } else {
+        alert('The letter S is your final clue');
+      }
+    } else {
+      alert('Wrong answer, try again!');
+    }
+  }
+
+  // Get all answer elements
+  const allAnswers = document.querySelectorAll('.answer');
+
+  // Iterate over each answer element and add an event listener
+  allAnswers.forEach(answer => {
+    answer.addEventListener('click', checkAnswer);
+  });
+
+</script>
+
+<body>
+
+    <h1>Type the Bonus Word here</h1>
+    <input type="text" id="catInput" placeholder="Type here..." />
+    <br>
+    <img id="catImage" src="https://placekitten.com/300/300" alt="A cute kitten">
+    <br>
+    <button id="finalButton" onclick="askFinalQuestion()">Press this for the final question</button>
+  
+    <script>
+      // Event listener for the input field
+      document.getElementById('catInput').addEventListener('input', function() {
+        const inputText = this.value.trim().toLowerCase();
+  
+        if (inputText === 'cats') {
+          revealCatImage();
+        }
+      });
+  
+      // Function to reveal the cat image and show the final question button
+      function revealCatImage() {
+        const catImage = document.getElementById('catImage');
+        catImage.style.display = 'block'; // Show the cat image
+  
+        // Show the final button after the cat image appears
+        const finalButton = document.getElementById('finalButton');
+        finalButton.style.display = 'block';
+      }
+  
+      // Function to ask the final question
+      function askFinalQuestion() {
+        const answer = prompt("What do cats chase? (Hint: Think of small furry animals)");
+  
+        if (answer && answer.toLowerCase() === 'mice') {
+          // Redirect to other.html if the answer is correct
+          window.location.href = 'other.html';
+        } else {
+          alert("Incorrect! Try again.");
+        }
+      }
+    </script>
+
+
+</body>
+
+
+</html>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat Picture Pop Up</title>
+  <style>
+    #catImage {
+      width: 300px;
+      height: auto;
+      display: none; /* Initially hidden */
+      margin-top: 20px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .catImage {
+      width: 300px;
+      height: auto;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Enter the bonus word. If you got this far the letters are C, A, T, and S</h1>
+  <input type="text" id="catInput" placeholder="it's not tacs" />
+  <br>
+  <img id="catImage" src="images/kittens2.jpg" >
+
+
+  <script>
+    // Event listener for the input field
+    alert('you will be greeted by cuteness')
+    document.getElementById('catInput').addEventListener('input', function() {
+      const inputText = this.value.trim().toLowerCase();
+
+      if (inputText === 'cats') {
+        revealCatImage();
+
+      }
+    });
+
+    // Function to reveal the cat image and remove all other elements
+    function revealCatImage() {
+      const catImage = document.getElementById('catImage');
+      catImage.style.display = 'block'; // Show the cat image
+
+      // Clear all other elements except the image
+      removeAllExceptCatImage();
+
+      // Add event listener for cloning images
+      catImage.addEventListener('click', cloneAndAddCatImage);
+    }
+
+    // Function to remove all elements from the body except for the image
+    function removeAllExceptCatImage() {
+      const body = document.body;
+
+      // Create a document fragment to hold the cat image
+      const fragment = document.createDocumentFragment();
+      
+      // Get the cat image
+      const catImage = document.getElementById('catImage');
+
+      // Append the cat image to the fragment
+      fragment.appendChild(catImage);
+
+      // Remove all existing elements from the body
+      while (body.firstChild) {
+        body.removeChild(body.firstChild);
+      }
+
+      // Append the fragment (containing the cat image) to the body
+      body.appendChild(fragment);
+    }
+
+    // using clonenode to get infinite cats
+    function cloneAndAddCatImage() {
+      const originalCatImage = document.getElementById('catImage');
+      
+      // Cloning the cat image
+      const clonedCatImage = originalCatImage.cloneNode(true);
+      
+      // removing id
+      clonedCatImage.removeAttribute('id');
+      
+      clonedCatImage.classList.add('catImage');
+      
+      // Appending image to original
+      document.body.appendChild(clonedCatImage);
+      
+      // infinite cats
+      clonedCatImage.addEventListener('click', cloneAndAddCatImage);
+    }
+  </script>
+
+</body>
+</html>

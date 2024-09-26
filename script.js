@@ -21,12 +21,12 @@ while (userPassword !== correctPassword) {
 }
 
 if (userPassword === correctPassword) {
-  alert("fine you pass");
+  alert("fine you pass, you're first clue is a");
 }
 
 //utilizing style
 const creepyText = document.getElementById("creepyText");
-creepyText.innerHTML = "Welcome to a place you shouldn't be";
+creepyText.innerHTML = "answer the questions, get the clues, unlock the bonus word";
 creepyText.style.fontFamily = "'Creepster', cursive";
 creepyText.style.color = "green";
 creepyText.style.fontSize = "36px"; 
