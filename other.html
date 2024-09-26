@@ -47,8 +47,6 @@
     function revealCatImage() {
       const catImage = document.getElementById('catImage');
       catImage.style.display = 'block'; // Show the cat image
-
-      // Clear all other elements except the image
       removeAllExceptCatImage();
 
       // Add event listener for cloning images
@@ -83,10 +81,7 @@
       
       // Cloning the cat image
       const clonedCatImage = originalCatImage.cloneNode(true);
-      
-      // removing id
       clonedCatImage.removeAttribute('id');
-      
       clonedCatImage.classList.add('catImage');
       
       // Appending image to original

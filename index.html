@@ -17,12 +17,13 @@
       </style>
 </head>
 <body>
+  <!--title with creepy text-->
     <div id="creepyText">words</div>
-  <!-- Question Container -->
+
+
+  <!-- first part -->
   <div id="form-container">
     <p>If a wolf is a dog and a tiger is a cat, how many legs are on a spider?</p>
-
-    <!-- Registration Form and attribute validation -->
     <form id="question1">
       <input name="answer1" 
       type="text" 
@@ -34,11 +35,11 @@
   </div>
 
   <script>
-    // current function to start quiz
+    // utilizing javascript to get second question
     function checkFirstAnswer() {
       const formContainer = document.getElementById('form-container'); 
       const answer1 = document.querySelector('input[name="answer1"]').value.trim();
-      const answerRegex = /^8$/; // Regex for validating the answer "8"
+      const answerRegex = /^8$/; // Regex for validating the answer "8" I know there are easier ways of doing
 
       if (!answerRegex.test(answer1)) {
         alert('The correct answer is 8. Please try again.');
@@ -56,13 +57,10 @@
             <input type="button" value="Submit Answer" onclick="checkSecondAnswer()" />
           </form>
         `;
-        
         // Appendchild usage
         formContainer.appendChild(newQuestion); 
-      }
-    }
-
-    // Function to check the second answer
+      } }
+    // check the second answer
     function checkSecondAnswer() {
       const answer2 = document.querySelector('input[name="answer2"]').value.trim();
       if (answer2.toLowerCase() === 'skunk') {
@@ -72,16 +70,15 @@
       }
     }
   </script>
-  <title>Click to Change Color</title>
-  <style>
+
+<!--second Part-->
+  <style> 
     #clickableText {
       font-size: 24px;
       color: black;
       cursor: pointer; /* Makeing text clickable */
     }
   </style>
-</head>
-<body>
 
   <p id="clickableText">Like the seasons I am always changing</p>
 
@@ -89,26 +86,24 @@
     // Getting the element by ID
     const textElement = document.getElementById('clickableText');
 
-    // Adding click event
     textElement.addEventListener('click', function() {
-      // Change the text color when clicked
+      // Changeing the text color.
       textElement.style.color = getRandomColor();
 
-      // Pop up a prompt to answer the question
       let userAnswer = prompt("the answer is literally-colors");
       
       // validating answer
       if (userAnswer.toLowerCase() === 'literally-colors') {
         alert("you can keep going");
 
-        // moving to next question
+        // next question
         askNextQuestion();
       } else {
         alert("How did you even get this wrong");
       }
     });
 
-    // Function to generate a random color in hexadecimal format
+    // random color function (googled how to do this)
     function getRandomColor() {
       const letters = '0123456789ABCDEF';
       let color = '#';
@@ -129,63 +124,44 @@
     }
   </script>
 
-</body>
-<style>
-    #clickableText {
-      font-size: 24px;
-      color: black;
-      cursor: pointer;
-    }
-    .kittenContainer {
-      margin-top: 20px;
-    }
-    img {
-      max-width: 300px;
-      border: 2px solid #000;
-      cursor: pointer; /* Make the image clickable */
-      display: none; /* Hide the second image initially */
-    }
-  </style>
-</head>
-<body>
-
-
   <div class="kittenContainer">
-    <img id="kitten1" src="images/tiger.jpg" alt="kitten"
+    <img id="kitten1" src="images/tiger.jpg" alt="kitten">
   </div>
   <div class="kittenContainer">
     <img id="kitten2" src="images/lion.jpg" alt="Another cute kitten">
   </div>
 
   <script>
-    const newElement = document.getElementById('clickableText');
-    const kitten1 = document.getElementById('kitten1');
-    const kitten2 = document.getElementById('kitten2');
+  const newElement = document.getElementById('clickableText');
+      const kitten1 = document.getElementById('kitten1');
+      const kitten2 = document.getElementById('kitten2');
 
-    // Event listener for the text element
-    newElement.addEventListener('click', function() {
-      let userAnswer = prompt("Do you want a picture of a tiger?");
-
-      if (userAnswer.toLowerCase() === 'yes') {
-        alert("Correct! Here’s your reward: Also the letter T");
-        kitten1.style.display = 'block'; // Show the first kitten image
-      } else {
-        alert("Incorrect! Try again.");
-      }
-    });
+      newElement.addEventListener('click', function() {
+        let userAnswer = prompt("Do you want a picture of a tiger?");
+        if (userAnswer.toLowerCase() === 'yes') {
+          alert("Correct! Here’s your reward: Also the letter T");
+          kitten1.style.display = 'block'; 
+        } else {
+          alert("just say yes");
+        }
+      });
+//Getting pictures (this took me far longer than I'd care to admit)
+      kitten1.addEventListener('click', function() {
+        kitten2.style.display = 'block';
+      });
 
     // Event listener for the first kitten image
     kitten1.addEventListener('click', function() {
-      // Get the next sibling (the second kitten image) and display it
+      // getting next sibling
       const nextKitten = kitten1.nextElementSibling.querySelector('img');
       if (nextKitten) {
-        nextKitten.style.display = 'block'; // Show the second kitten
+        nextKitten.style.display = 'block'; // Showing second picture
       }
     });
 
   </script>
 
-<title>Riddle Game</title>
+<!--third part-->
 <style>
   .riddle {
     margin-bottom: 20px;
@@ -206,8 +182,7 @@
     display: none;
   }
 </style>
-</head>
-<body>
+
 
 <div id="riddle1" class="riddle">
   <p>There are no good answers</p>
@@ -227,35 +202,33 @@
   <p>You're afraid of the dark</p>
   <span class="answer">No I'm brave</span>
   <span class="answer">Of course who isn't</span>
-  <span class="answer">babbling</span>
+  <span class="answer">are you?</span>
 </div>
 
 <script>
-  // Array of correct answers
-  const correctAnswers = ['yes', 'shh', 'babbling'];
+  // Array of answers
+  const correctAnswers = ['Yes', 'Shh', 'are you?'];
 
-  // Function to check the answer and show the next riddle
+  // Function to check the answer and show the next riddle, utilizing a loop
   function checkAnswer(event) {
     const selectedAnswer = event.target.innerText;
     const currentRiddle = event.target.parentElement;
     const riddleIndex = [...document.querySelectorAll('.riddle')].indexOf(currentRiddle);
     
     if (selectedAnswer === correctAnswers[riddleIndex]) {
-      alert('Correct!');
+      alert('Correct!, your final clue is S. You can keep answering but you will only get the same clue');
       currentRiddle.classList.add('hidden'); // Hide current riddle
       const nextRiddle = currentRiddle.nextElementSibling;
       
       if (nextRiddle) {
         nextRiddle.classList.remove('hidden'); // Show the next riddle
-      } else {
-        alert('The letter S is your final clue');
       }
     } else {
       alert('Wrong answer, try again!');
     }
   }
 
-  // Get all answer elements
+  // Get all answers
   const allAnswers = document.querySelectorAll('.answer');
 
   // Iterate over each answer element and add an event listener
@@ -265,49 +238,46 @@
 
 </script>
 
-<body>
+<!--final part-->
+<h2>Type the Bonus Word here</h2>
+<input type="text" id="catInput" placeholder="Type here..." />
+<br>
+<img id="catImage" src="images/kittens.jpg" alt="A cute kitten" style="display:none;"> <!-- Initially hidden -->
+<br>
+<button id="finalButton" style="display:none;" onclick="askFinalQuestion()">Press this for the final question</button> <!-- Initially hidden -->
 
-    <h1>Type the Bonus Word here</h1>
-    <input type="text" id="catInput" placeholder="Type here..." />
-    <br>
-    <img id="catImage" src="https://placekitten.com/300/300" alt="A cute kitten">
-    <br>
-    <button id="finalButton" onclick="askFinalQuestion()">Press this for the final question</button>
-  
-    <script>
-      // Event listener for the input field
-      document.getElementById('catInput').addEventListener('input', function() {
-        const inputText = this.value.trim().toLowerCase();
-  
-        if (inputText === 'cats') {
-          revealCatImage();
-        }
-      });
-  
-      // Function to reveal the cat image and show the final question button
-      function revealCatImage() {
-        const catImage = document.getElementById('catImage');
-        catImage.style.display = 'block'; // Show the cat image
-  
-        // Show the final button after the cat image appears
-        const finalButton = document.getElementById('finalButton');
-        finalButton.style.display = 'block';
-      }
-  
-      // Function to ask the final question
-      function askFinalQuestion() {
-        const answer = prompt("What do cats chase? (Hint: Think of small furry animals)");
-  
-        if (answer && answer.toLowerCase() === 'mice') {
-          // Redirect to other.html if the answer is correct
-          window.location.href = 'other.html';
-        } else {
-          alert("Incorrect! Try again.");
-        }
-      }
-    </script>
+<script>
+  // Event listener for input field
+  document.getElementById('catInput').addEventListener('input', function() {
+    const inputText = this.value.trim().toLowerCase();
 
+    if (inputText === 'cats') {
+      revealCatImage();
+    }
+  });
 
+  // Function to reveal cat image and the final question button
+  function revealCatImage() {
+    const catImage = document.getElementById('catImage');
+    catImage.style.display = 'block'; // Show the cat image
+
+    // Show the final button after the cat image appears
+    const finalButton = document.getElementById('finalButton');
+    finalButton.style.display = 'block';
+  }
+
+  // Asking final question
+  function askFinalQuestion() {
+    const answer = prompt("Are you a robot, alien, or high intelligence dog?");
+
+    if (answer && answer.toLowerCase() === 'no') {
+      // Redirect to other.html 
+      window.location.href = 'other.html';
+    } else {
+      alert("So hard to say no? We aren't gonna check. Maybe I'm a dog. Your final clue is S. The bonus word is cats. It's always been cats.");
+    }
+  }
+</script>
 </body>
 
 

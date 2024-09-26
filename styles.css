@@ -1,4 +1,13 @@
-* {background-color: rgb(86, 17, 51);}
+* {background-color: rgb(128, 41, 41);}
 .button {
-    color: rgb(98, 96, 96);
+    color: rgb(18, 16, 16);
 }
+.kittenContainer {
+    margin-top: 20px;
+  }
+  img {
+    max-width: 300px;
+    border: 2px solid #000;
+    cursor: pointer; /* Make the image clickable */
+    display: none; /* Hide the second image initially */
+  }

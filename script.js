@@ -9,7 +9,7 @@ let userPassword = "";
 while (userPassword !== correctPassword) {
   userPassword = prompt("We need to see if you are clever enough to enter. Type thepassword to continue");
 
-  // If the user cancels the prompt, break the loop
+  // breaking look if cancelled
   if (userPassword === null) {
     alert("Aren't even gonna try are you.");
     break;
