@@ -57,21 +57,19 @@
     function removeAllExceptCatImage() {
       const body = document.body;
 
-      // Create a document fragment to hold the cat image
+      // Create a fragment to hold the cat picture, getting picture
       const fragment = document.createDocumentFragment();
-      
-      // Get the cat image
       const catImage = document.getElementById('catImage');
 
-      // Append the cat image to the fragment
+      // Appending the cat image to the fragment
       fragment.appendChild(catImage);
 
-      // Remove all existing elements from the body
+      // removing existing elements from the body
       while (body.firstChild) {
         body.removeChild(body.firstChild);
       }
 
-      // Append the fragment (containing the cat image) to the body
+      // Append fragment with cat image
       body.appendChild(fragment);
     }
 

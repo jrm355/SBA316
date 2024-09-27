@@ -21,7 +21,7 @@ while (userPassword !== correctPassword) {
 }
 
 if (userPassword === correctPassword) {
-  alert("fine you pass, you're first clue is a");
+  alert("fine you pass, your first clue is a");
 }
 
 //utilizing style
